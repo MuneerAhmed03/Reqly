@@ -17,6 +17,8 @@ const server = (0, http_1.createServer)(app);
 (0, io_1.initializeSocketIO)(server);
 const router = require("./routes/index");
 app.use(express_1.default.json());
+app.use(express_1.default.raw());
+app.use(express_1.default.text());
 app.use("/dump", router);
 server.listen(8000, () => {
     console.log("Server is running on port 8000");

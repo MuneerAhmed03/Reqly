@@ -18,6 +18,8 @@ initializeSocketIO(server);
 const router = require("./routes/index")
 
 app.use(express.json());
+app.use(express.raw());
+app.use(express.text());
 app.use("/dump",router);
 
 

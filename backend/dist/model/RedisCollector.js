@@ -29,6 +29,7 @@ class RedisCollector {
             yield client.set(dump.name, JSON.stringify(updatedDump), 'EX', 60 * 60 * 2).then(() => {
                 console.log("create request execusted");
             });
+            return updatedDump;
         });
     }
     createMockResoponse(dump, mock) {

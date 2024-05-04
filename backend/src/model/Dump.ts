@@ -5,7 +5,8 @@ export interface RequestData {
   body: any;
   method: string;
   headers: [string, string][];
-  query : Record<string, string | undefined>
+  query : Record<string, string | undefined>;
+  bodyPara : Record<string, string | undefined>;
 }
 // export class Dump {
 //   name: string;

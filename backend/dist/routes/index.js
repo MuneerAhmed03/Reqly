@@ -30,18 +30,20 @@ router.all("/inspect/:randomUrl", (req, res) => __awaiter(void 0, void 0, void 0
             method: req.method,
             headers: Object.entries(req.headers).map(([key, value]) => {
                 if (Array.isArray(value)) {
-                    return [key, value.join(', ')];
+                    return [key, value.join(", ")];
                 }
                 else {
-                    return [key, value || ''];
+                    return [key, value || ""];
                 }
             }),
             query: req.query,
+            bodyPara: req.body,
         };
-        console.log(requestData);
-        yield redisCollector.createRequest(dump, requestData).then(() => {
-            (0, io_1.getIO)().emit("newRequest", { dump: dump.name, request: requestData });
+        yield redisCollector
+            .createRequest(dump, requestData)
+            .then((updatedDump) => {
             res.send(dump.mockResponse);
+            (0, io_1.getIO)().emit("newRequest", { dump: updatedDump });
         });
     }
     else {

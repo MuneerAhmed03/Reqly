@@ -1,19 +1,10 @@
-import TitleHead from './components/TitleHead'
 import Inspect from './pages/inspect'
 
-
-function App() {
-  
-  const filteredRequests: any[]= []
-  const selectedRequest= {}
- const onSelectionChange: (request: any) => void= (request: any) => {}
-  
-
+function App() {  
   return (
-    <>
-    <TitleHead/>
-    <Inspect />
-    </>
+    <div className="w-screen h-screen">
+      <Inspect />
+    </div>
   )
 }
 

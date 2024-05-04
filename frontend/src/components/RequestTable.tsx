@@ -18,9 +18,7 @@ const RequestTable: React.FC<RequestTableProps> = ({ filteredRequests, onSelecti
         </thead>
         <tbody className="bg-gray-900">
           {filteredRequests.map((request) => (
-            console.log(request),
             <tr
-              
               className="cursor-pointer"
               onClick={() => onSelectionChange(request)}
             >
@@ -28,10 +26,6 @@ const RequestTable: React.FC<RequestTableProps> = ({ filteredRequests, onSelecti
                 <p>
                   {request.method} {request.url}
                 </p>
-                <span className="text-xs">{request.subdomain}</span>
-                <span className="text-xs text-gray-400">
-                  {request.performed_at}
-                </span>
               </td>
             </tr>
           ))}

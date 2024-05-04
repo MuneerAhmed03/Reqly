@@ -18,6 +18,7 @@ export default class RedisCollector {
         await client.set(dump.name, JSON.stringify(updatedDump), 'EX', 60 * 60 * 2).then(() => {
             console.log("create request execusted");
         });
+        return updatedDump;
     }
     
     public async createMockResoponse(dump: Dump, mock : {}){
