@@ -61,4 +61,13 @@ router.post("/response", (req, res) => __awaiter(void 0, void 0, void 0, functio
         res.send("Invalid key");
     }
 }));
+router.get("/retrieve/:name", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const dump = yield redisCollector.getDump(req.params.name);
+    if (dump != null) {
+        res.send(dump);
+    }
+    else {
+        res.status(404).send("Dump not found");
+    }
+}));
 module.exports = router;

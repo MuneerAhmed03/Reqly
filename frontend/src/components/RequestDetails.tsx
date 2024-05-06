@@ -9,7 +9,7 @@ interface RequestDetailsProps {
 
 const RequestDetails: React.FC<RequestDetailsProps> = ({ selectedRequest }) => {
   if (!selectedRequest) {
-    return <div>No request selected</div>;
+    return <div className='p-10 text-white'>No request selected</div>;
   }
 
   return (

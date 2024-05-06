@@ -54,4 +54,13 @@ router.post("/response", async (req, res) => {
   }
 });
 
+router.get("/retrieve/:name", async (req,res)=>{
+  const dump : Dump | null = await redisCollector.getDump(req.params.name);
+  if(dump != null){
+    res.send(dump);
+  }else{
+    res.status(404).send("Dump not found");
+  }
+});
+
 export = router;

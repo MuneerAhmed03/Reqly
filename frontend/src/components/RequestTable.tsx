@@ -17,7 +17,7 @@ const RequestTable: React.FC<RequestTableProps> = ({ filteredRequests, onSelecti
           </tr>
         </thead>
         <tbody className="bg-gray-900">
-          {filteredRequests.map((request) => (
+          {filteredRequests?.map((request) => (
             <tr
               className="cursor-pointer"
               onClick={() => onSelectionChange(request)}
