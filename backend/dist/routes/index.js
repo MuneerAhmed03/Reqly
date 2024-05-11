@@ -18,7 +18,7 @@ const router = express_1.default.Router();
 const redisCollector = new RedisCollector_1.default();
 router.get("/generate", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield redisCollector.createDump().then((dump) => {
-        res.send(dump.name);
+        res.send(dump);
     });
 }));
 router.all("/inspect/:randomUrl", (req, res) => __awaiter(void 0, void 0, void 0, function* () {

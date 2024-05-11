@@ -2,22 +2,20 @@ import { useEffect, useState } from 'react';
 import RequestTable from '../components/RequestTable';
 import RequestDetails from '../components/RequestDetails';
 import io from 'socket.io-client';
-import {RequestData} from '../types/interfaces'
+import {RequestData,Dump} from '../types/interfaces'
 import TitleHead from '../components/TitleHead';
 import axios from 'axios';
 
 const socket = io('http://localhost:8000'); 
 
 const Inspect = () => {
-  const [requests, setRequests] = useState<RequestData[]>([]);
-  const [selectedRequest, setSelectedRequest] = useState<any>();
-  const [dumpName, setDumpName] = useState<string>();
+  const [selectedRequest, setSelectedRequest] = useState<RequestData>();
+  const [dump,setDump] = useState<Dump>({name:'',requests:[],mockResponse:{}} as Dump);
 
   useEffect(() => {
     socket.on('newRequest', ({ dump }) => {
-      setRequests(dump.requests);
+      setDump(dump);
     });
-    // Clean up by removing the event listener when the component unmounts
     return () => {
       socket.off('newRequest');
     };
@@ -26,19 +24,17 @@ const Inspect = () => {
   useEffect(()=>{
     if(sessionStorage.getItem('dumpName') == null){
     axios.get('http://localhost:8000/dump/generate').then((res)=>{
-      sessionStorage.setItem('dumpName',res.data);
-      console.log(sessionStorage.getItem('dumpName'));
-      setDumpName(res.data);
-      setRequests(res.data.requests);
+      if(res.status===200){
+        console.log(res.data);
+        setDump(res.data as Dump);
+        sessionStorage.setItem('dumpName',res.data.name);
+      };
     })
   }else{
-    setDumpName(sessionStorage.getItem('dumpName') as string);
-    const dumpName = sessionStorage.getItem('dumpName') as string;
-    console.log(dumpName);
-    axios.get(`http://localhost:8000/dump/retrieve/${dumpName}`).then((res)=>{
+    const url = sessionStorage.getItem('dumpName') as string;
+    axios.get(`http://localhost:8000/dump/retrieve/${url}`).then((res)=>{
       if(res.status===200){
-        setRequests(res.data.requests);
-        setDumpName(res.data.name);
+        setDump(res.data as Dump);
       }
       else{
         sessionStorage.removeItem('dumpName');
@@ -49,11 +45,11 @@ const Inspect = () => {
 
   return (
     <div className="flex flex-col h-screen overflow-auto">
-      <TitleHead name={dumpName ?? ''}/>
+      <TitleHead dump={dump}/>
       <div className="flex flex-row flex-grow">
         {/* RequestTable takes up 1/3 of the screen */}
         <div className="w-1/3 bg-black overflow-auto">
-          <RequestTable filteredRequests={requests} onSelectionChange={setSelectedRequest} />
+          <RequestTable filteredRequests={dump.requests} onSelectionChange={setSelectedRequest} />
         </div>
         {/* RequestDetails takes up 2/3 of the screen */}
         <div className="w-2/3 bg-stone-950 overflow-auto">

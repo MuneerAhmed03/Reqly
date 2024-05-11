@@ -1,5 +1,5 @@
-import React from 'react';
-import Editor , {Monaco} from '@monaco-editor/react';
+import React , { useRef } from 'react';
+import Editor ,{OnMount} from '@monaco-editor/react';
 
 interface MonacoDialogProps {
   open: boolean;
@@ -12,27 +12,18 @@ const MockEditor: React.FC<MonacoDialogProps> = ({ open, onClose, code, onChange
   if (!open) {
     return null;
   }
+  const editorRef = useRef<any>(null);
 
-  const myCustomTheme = {
-    base: 'vs-dark', // can also be 'vs' or 'hc-black'
-    inherit: true, // can also be false to completely replace the builtin rules
-    rules: [
-      { token: 'comment', foreground: 'ffa500', fontStyle: 'italic' },
-      { token: 'keyword', foreground: 'ff0000' },
-    ],
-    colors: {
-      'editor.foreground': '#000000',
-      'editor.background': '#EDF9FA',
-      'editorCursor.foreground': '#8B0000',
-      'editor.lineHighlightBackground': '#0000FF20',
-      'editorLineNumber.foreground': '#008800',
-      'editor.selectionBackground': '#88000030',
-      'editor.inactiveSelectionBackground': '#88000015'
+ 
+  const handleEditorDidMount: OnMount = (editor, monaco) => {
+    editorRef.current = editor;
+  };
+  const handleSave = () => {
+    if (editorRef.current) {
+      console.log("Code " + editorRef.current.getValue());
     }
-  }
-
-
-
+    onClose();
+  };
 
   return (
     
@@ -51,9 +42,10 @@ const MockEditor: React.FC<MonacoDialogProps> = ({ open, onClose, code, onChange
               onChange={onChange}
               theme='vs-dark'
             />
+    
           </div>
           <div className="bg-black px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-            <button type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-zinc-900 text-base font-medium text-white hover:bg-zinc-700 focus:outline-none  sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onClick={onClose}>
+            <button type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-zinc-900 text-base font-medium text-white hover:bg-zinc-700 focus:outline-none  sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onClick={handleSave}>
                 Save
             </button>
             <button type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-zinc-900 text-base font-medium text-white hover:bg-zinc-700 focus:outline-none  sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onClick={onClose}>

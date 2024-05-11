@@ -10,7 +10,7 @@ const redisCollector = new RedisCollector();
 
 router.get("/generate", async (req, res) => {
   await redisCollector.createDump().then((dump) => {
-    res.send(dump.name);
+    res.send(dump);
   });
 });
 
