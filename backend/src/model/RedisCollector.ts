@@ -21,11 +21,12 @@ export default class RedisCollector {
         return updatedDump;
     }
     
-    public async createMockResoponse(dump: Dump, mock : {}){
-        const updatedDump =  addMock(dump,mock);
+    public async createMockResponse(dump: Dump){
+        const updatedDump =  addMock(dump,dump.mockResponse);
         await client.set(dump.name, JSON.stringify(updatedDump), 'EX', 60 * 60 * 2).then(() => {
             console.log("mock response added");
         });
+        return updatedDump;
     }
     
     public async getDump(name : string) : Promise<Dump | null> {

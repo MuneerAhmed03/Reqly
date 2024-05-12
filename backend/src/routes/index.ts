@@ -43,15 +43,32 @@ router.all("/inspect/:randomUrl", async (req, res) => {
   }
 });
 
-router.post("/response", async (req, res) => {
-  const key = req.query.key as string;
-  const dump: Dump | null = await redisCollector.getDump(key);
-  const mock = req.body;
-  if (dump != null) {
-    await redisCollector.createMockResoponse(dump, mock);
-  } else {
-    res.send("Invalid key");
-  }
+// router.post("/response", async (req, res) => {
+//   const key = req.query.key as string;
+//   const dump: Dump | null = await redisCollector.getDump(key);
+//   const mock = req.body;
+//   if (dump != null) {
+//     await redisCollector.createMockResponse(dump, mock).then((updatedDump) => {
+//       getIO().emit("newRequest", { dump: updatedDump });
+//     });
+//   } else {
+//     res.send("Invalid key");
+//   }
+// });
+
+getIO().on("connection", (socket) => {
+  socket.on("response", async (dump) => {
+    try {
+      if (dump != null) {
+        const updatedDump = await redisCollector.createMockResponse(dump);
+        getIO().emit("newRequest", { dump: updatedDump });
+      } else {
+        console.error(`Dump not found: ${dump.name}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  });
 });
 
 router.get("/retrieve/:name", async (req,res)=>{

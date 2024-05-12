@@ -11,7 +11,7 @@ const RequestTable: React.FC<RequestTableProps> = ({ filteredRequests, onSelecti
       <table className="min-w-full">
         <thead className="m-4">
           <tr>
-            <th className="px-6 py-3 border-b m-2 bg-gray-700 border-gray-700 text-left text-xs leading-4 font-medium text-gray-200 uppercase tracking-wider">
+            <th className="px-6 py-3 border-b m-2 bg-white border-gray-700 text-left text-xs leading-4 font-medium text-gray-900 uppercase tracking-wider">
               URL
             </th>
           </tr>

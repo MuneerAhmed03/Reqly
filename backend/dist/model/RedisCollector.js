@@ -32,12 +32,13 @@ class RedisCollector {
             return updatedDump;
         });
     }
-    createMockResoponse(dump, mock) {
+    createMockResponse(dump) {
         return __awaiter(this, void 0, void 0, function* () {
-            const updatedDump = (0, Dump_1.addMock)(dump, mock);
+            const updatedDump = (0, Dump_1.addMock)(dump, dump.mockResponse);
             yield client.set(dump.name, JSON.stringify(updatedDump), 'EX', 60 * 60 * 2).then(() => {
                 console.log("mock response added");
             });
+            return updatedDump;
         });
     }
     getDump(name) {
