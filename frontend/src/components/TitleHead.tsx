@@ -1,11 +1,13 @@
 import MockEditor from "./MockEditor";
 import { useEffect, useState } from "react";
 import { Dump } from "../types/interfaces";
+import toast, { Toaster, ToastBar } from "react-hot-toast";
 import socket from "../socket";
 
 interface TitleHeadProps {
   dump: Dump;
 }
+const notify = () => toast("URL Copied!");
 
 const TitleHead: React.FC<TitleHeadProps> = ({ dump }) => {
   const [open, setOpen] = useState(false);
@@ -34,6 +36,7 @@ const TitleHead: React.FC<TitleHeadProps> = ({ dump }) => {
           className="w-1/2 p-1 font-semibold rounded-l-lg bg-zinc-950 text-white text-lg font hover:bg-zinc-900"
           onClick={() => {
             navigator.clipboard.writeText(dump.name);
+            notify();
           }}
         >
           Copy
@@ -55,6 +58,7 @@ const TitleHead: React.FC<TitleHeadProps> = ({ dump }) => {
           onSave={(code: string) => setResponse(code)}
         />
       </div>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 };
