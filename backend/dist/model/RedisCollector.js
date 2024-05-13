@@ -14,7 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ioredis_1 = __importDefault(require("ioredis"));
 const Dump_1 = require("./Dump");
-const client = new ioredis_1.default();
+require('dotenv').config();
+const redisUrl = process.env.REDIS_URL;
+if (!redisUrl) {
+    throw new Error('REDIS_URL is not defined');
+}
+const client = new ioredis_1.default(redisUrl);
 class RedisCollector {
     createDump() {
         return __awaiter(this, void 0, void 0, function* () {

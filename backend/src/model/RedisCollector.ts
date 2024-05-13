@@ -1,7 +1,13 @@
 import Redis from 'ioredis'
 import { Dump , RequestData ,newDump ,addRequest, addMock } from './Dump';
+require('dotenv').config();
 
-const client = new Redis();
+
+const redisUrl = process.env.REDIS_URL;
+if (!redisUrl) {
+  throw new Error('REDIS_URL is not defined');
+}
+const client = new Redis(redisUrl);
 
 export default class RedisCollector {
 
