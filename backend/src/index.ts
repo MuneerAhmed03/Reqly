@@ -1,13 +1,13 @@
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { initializeSocketIO, getIO } from "./io/io";
+import { initializeSocketIO } from "./io/io";
 import cors from "cors";
 
 const app = express();
 const port = process.env.PORT || 3000;
 const corsOptions = {
-  origin: ['http://localhost:5173','https://reqly.vercel.app'],
+  origin: 'https://reqly.vercel.app',
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
