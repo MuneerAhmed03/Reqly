@@ -1,5 +1,4 @@
-import React from 'react'
-
+const REQLY_URL = import.meta.env.VITE_REQLY_URL || 'http://localhost:3000';
 const EmptySelection  = () => {
     const name = sessionStorage.getItem("dumpName");
     return (
@@ -8,7 +7,7 @@ const EmptySelection  = () => {
             <div className="px-4 py-5 border-b border-gray-700 sm:px-6">
                 <h3 className="text-lg text-center leading-6 justify-center font-medium text-gray-900 flex">
                         Waiting for Request On :<br/>
-                        {`http://localhost:8000/dump/inspect/${name}`}
+                        {`${REQLY_URL}/dump/inspect/${name}`}
                 </h3>
                 </div>
             </div>

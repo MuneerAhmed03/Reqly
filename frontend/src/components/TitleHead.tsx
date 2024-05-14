@@ -1,8 +1,9 @@
 import MockEditor from "./MockEditor";
 import { useEffect, useState } from "react";
 import { Dump } from "../types/interfaces";
-import toast, { Toaster, ToastBar } from "react-hot-toast";
+import toast, { Toaster} from "react-hot-toast";
 import socket from "../socket";
+const REQLY_URL = import.meta.env.VITE_REQLY_URL || 'http://localhost:3000';
 
 interface TitleHeadProps {
   dump: Dump;
@@ -35,7 +36,7 @@ const TitleHead: React.FC<TitleHeadProps> = ({ dump }) => {
         <button
           className="w-1/2 p-1 font-semibold rounded-l-lg bg-zinc-950 text-white text-lg font hover:bg-zinc-900"
           onClick={() => {
-            navigator.clipboard.writeText(dump.name);
+            navigator.clipboard.writeText(`${REQLY_URL}/dump/inspect/${dump.name}`);
             notify();
           }}
         >

@@ -34,9 +34,9 @@ export interface Dump {
   });
   
   export const addRequest = (dump: Dump, request: RequestData): Dump => ({
-    ...dump,
-    requests: [...dump.requests, request],
-  });
+  ...dump,
+  requests: [request, ...dump.requests],
+});
 
   export const addMock = (dump: Dump, mock:{}): Dump =>({
     ...dump,

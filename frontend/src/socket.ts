@@ -1,5 +1,9 @@
 import io from 'socket.io-client';
 
-const socket = io("http://localhost:8000");
+
+const REQLY_URL = import.meta.env.VITE_REQLY_URL|| 'http://localhost:3000';
+
+
+const socket = io(REQLY_URL);
 
 export default socket;

@@ -8,7 +8,7 @@ const newDump = () => ({
     mockResponse: {}
 });
 exports.newDump = newDump;
-const addRequest = (dump, request) => (Object.assign(Object.assign({}, dump), { requests: [...dump.requests, request] }));
+const addRequest = (dump, request) => (Object.assign(Object.assign({}, dump), { requests: [request, ...dump.requests] }));
 exports.addRequest = addRequest;
 const addMock = (dump, mock) => (Object.assign(Object.assign({}, dump), { mockResponse: mock }));
 exports.addMock = addMock;
