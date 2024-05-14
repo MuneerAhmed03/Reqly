@@ -10,7 +10,7 @@ const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 const corsOptions = {
-    origin: 'https://reqly.vercel.app',
+    origin: '*',
     optionsSuccessStatus: 200,
 };
 app.use((0, cors_1.default)(corsOptions));
