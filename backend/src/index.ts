@@ -7,7 +7,7 @@ import cors from "cors";
 const app = express();
 const port = process.env.PORT || 3000;
 const corsOptions = {
-  origin: 'https://reqly.vercel.app',
+  origin: '*',
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
