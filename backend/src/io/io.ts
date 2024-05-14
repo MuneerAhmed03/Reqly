@@ -5,7 +5,7 @@ let io: Server;
 export function initializeSocketIO(httpServer: any) {
   io = new Server(httpServer,{
     cors:{
-      origin:"http://localhost:5173"
+      origin:"https://reqly.vercel.app"
     }
   });
 }
