@@ -50,18 +50,6 @@ router.all("/inspect/:randomUrl", (req, res) => __awaiter(void 0, void 0, void 0
         res.send("Invalid URL");
     }
 }));
-// router.post("/response", async (req, res) => {
-//   const key = req.query.key as string;
-//   const dump: Dump | null = await redisCollector.getDump(key);
-//   const mock = req.body;
-//   if (dump != null) {
-//     await redisCollector.createMockResponse(dump, mock).then((updatedDump) => {
-//       getIO().emit("newRequest", { dump: updatedDump });
-//     });
-//   } else {
-//     res.send("Invalid key");
-//   }
-// });
 (0, io_1.getIO)().on("connection", (socket) => {
     socket.on("response", (dump) => __awaiter(void 0, void 0, void 0, function* () {
         try {

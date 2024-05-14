@@ -6,7 +6,7 @@ import EmptySelection from "./EmptySelection";
 import { RequestData } from "../types/interfaces";
 
 interface RequestDetailsProps {
-  selectedRequest: RequestData | null; // Data structure for the selected request
+  selectedRequest: RequestData | null; 
 }
 
 const RequestDetails: React.FC<RequestDetailsProps> = ({ selectedRequest }) => {
@@ -19,7 +19,6 @@ const RequestDetails: React.FC<RequestDetailsProps> = ({ selectedRequest }) => {
   }
 
   return (
-    console.log("Post Parameter " + selectedRequest.bodyPara),
     (
       <div className="w-full mt-5 md:mt-0">
         <div className="bg-gray-900 shadow overflow-hidden sm:rounded-lg m-5 dark:bg-gray-800">

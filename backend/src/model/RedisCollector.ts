@@ -22,7 +22,6 @@ export default class RedisCollector {
     public async createRequest(dump : Dump, request : RequestData) {
         const updatedDump =  addRequest(dump,request);
         await client.set(dump.name, JSON.stringify(updatedDump), 'EX', 60 * 60 * 2).then(() => {
-            console.log("create request execusted");
         });
         return updatedDump;
     }
@@ -30,7 +29,6 @@ export default class RedisCollector {
     public async createMockResponse(dump: Dump){
         const updatedDump =  addMock(dump,dump.mockResponse);
         await client.set(dump.name, JSON.stringify(updatedDump), 'EX', 60 * 60 * 2).then(() => {
-            console.log("mock response added");
         });
         return updatedDump;
     }

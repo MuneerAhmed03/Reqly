@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Child component for displaying headers
 export const Headers: React.FC<{ headers: [string, string][] }> = ({ headers }) => {
     return (
       <>

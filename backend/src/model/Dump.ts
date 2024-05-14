@@ -8,19 +8,6 @@ export interface RequestData {
   query : Record<string, string | undefined>;
   bodyPara : Record<string, string | undefined>;
 }
-// export class Dump {
-//   name: string;
-//   requests: RequestData[];
-
-//   constructor() {
-//     this.name = uuidv4();
-//     this.requests = [];
-//   }
-
-//   addRequest(request: RequestData): void {
-//     this.requests.push(request);
-//   }
-// }
 export interface Dump {
     name: string;
     requests: RequestData[];

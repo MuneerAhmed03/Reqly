@@ -1,7 +1,7 @@
 
 interface RequestTableProps {
   filteredRequests: any[];
-    onSelectionChange: (request: any) => void; // Function provided by the parent component
+    onSelectionChange: (request: any) => void; 
   }
 
 const RequestTable: React.FC<RequestTableProps> = ({ filteredRequests, onSelectionChange }) => {
