@@ -14,6 +14,7 @@ const notify = () => toast("URL Copied!");
 const TitleHead: React.FC<TitleHeadProps> = ({ dump }) => {
   const [open, setOpen] = useState(false);
   const [response, setResponse] = useState("");
+  
   useEffect(() => {
     if (response) {
       const updatedDump = { ...dump, mockResponse: JSON.parse(response) };
@@ -32,12 +33,12 @@ const TitleHead: React.FC<TitleHeadProps> = ({ dump }) => {
 
   return (
     <div className="flex justify-center items-center relative bg-black">
-      <div className="absolute left-0 w-40 h-full shadow-lg hover:p-1">
+      <div className="absolute left-0 w-full md:w-40 h-full shadow-lg hover:p-1">
       <img className="w-full h-full shadow-lg" src={YourSvg} alt="Your SVG" />
     </div>
-      <div className="flex justify-center items-center  w-48 bg-zinc-950 rounded-lg m-4 ">
+      <div className="flex justify-center items-center w-full  md:w-48 bg-zinc-950 rounded-lg m-4 ">
         <button
-          className="w-1/2 p-1 font-semibold rounded-l-lg bg-zinc-950 text-white text-lg font hover:bg-zinc-900"
+          className="w-full md:w-1/2 p-1 font-semibold rounded-l-lg bg-zinc-950 text-white text-lg font hover:bg-zinc-900"
           onClick={() => {
             navigator.clipboard.writeText(`${REQLY_URL}/dump/inspect/${dump.name}`);
             notify();
@@ -47,7 +48,7 @@ const TitleHead: React.FC<TitleHeadProps> = ({ dump }) => {
         </button>
         <div className="h-full border-r border-zinc-950"></div>
         <button
-          className="w-1/2 p-1  rounded-r-lg bg-zinc-950 text-white text-lg hover:bg-zinc-900"
+          className="w-full md:w-1/2 p-1  rounded-r-lg bg-zinc-950 text-white text-lg hover:bg-zinc-900"
           onClick={() => {
             setOpen(true);
           }}
