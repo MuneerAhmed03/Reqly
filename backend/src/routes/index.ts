@@ -43,7 +43,6 @@ router.all("/inspect/:randomUrl", async (req, res) => {
   }
 });
 
-
 getIO().on("connection", (socket) => {
   socket.on("response", async (dump) => {
     try {
@@ -59,11 +58,11 @@ getIO().on("connection", (socket) => {
   });
 });
 
-router.get("/retrieve/:name", async (req,res)=>{
-  const dump : Dump | null = await redisCollector.getDump(req.params.name);
-  if(dump != null){
+router.get("/retrieve/:name", async (req, res) => {
+  const dump: Dump | null = await redisCollector.getDump(req.params.name);
+  if (dump != null) {
     res.send(dump);
-  }else{
+  } else {
     res.status(404).send("Dump not found");
   }
 });

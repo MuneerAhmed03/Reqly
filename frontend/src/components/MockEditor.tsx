@@ -14,7 +14,7 @@ const MockEditor: React.FC<MonacoDialogProps> = ({
   onClose,
   code,
   onChange,
-  onSave
+  onSave,
 }) => {
   if (!open) {
     return null;
@@ -27,10 +27,10 @@ const MockEditor: React.FC<MonacoDialogProps> = ({
   const handleSave = () => {
     if (editorRef.current) {
       console.log("Code " + editorRef.current.getValue());
-    }else{
-        console.log("Editor not found");
+    } else {
+      console.log("Editor not found");
     }
-    onSave(editorRef.current.getValue().toString())
+    onSave(editorRef.current.getValue().toString());
     onClose();
   };
 

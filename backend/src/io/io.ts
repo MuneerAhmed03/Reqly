@@ -3,10 +3,10 @@ import { Server } from "socket.io";
 let io: Server;
 
 export function initializeSocketIO(httpServer: any) {
-  io = new Server(httpServer,{
-    cors:{
-      origin:"https://reqly.vercel.app"
-    }
+  io = new Server(httpServer, {
+    cors: {
+      origin: "https://reqly.vercel.app",
+    },
   });
 }
 

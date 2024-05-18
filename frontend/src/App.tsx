@@ -1,11 +1,11 @@
-import Inspect from './pages/inspect'
+import Inspect from "./pages/inspect";
 
-function App() {  
+function App() {
   return (
     <div className="w-screen h-screen">
       <Inspect />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
