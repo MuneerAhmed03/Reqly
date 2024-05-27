@@ -1,11 +1,10 @@
-
+`    
 # Reqly : A HTTP Request Inspector
 
 ## Demo
 
 
-https://github.com/MuneerAhmed03/Reqly/assets/97833696/b341b642-98e7-49ac-9dde-3528f868e4a4
-
+https://github.com/MuneerAhmed03/Reqly/assets/97833696/0536feae-16c1-4e81-ab44-22801d60ebde
 
 
 ## Features
