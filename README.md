@@ -3,6 +3,7 @@
 
 ## Demo
 
+https://github.com/MuneerAhmed03/Reqly/assets/97833696/0536feae-16c1-4e81-ab44-22801d60ebde
 
 ## Features
 - `Real-Time HTTP Request Inspection` : Generate a random URL for use in Axios or Fetch requests to inspect HTTP requests in real time, including headers, body, and methods.
