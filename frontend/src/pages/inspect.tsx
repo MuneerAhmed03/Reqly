@@ -24,7 +24,7 @@ const Inspect = () => {
       const updatedRequests = filterHeaders(dump.requests);
       const updatedDump = { ...dump, requests: updatedRequests };
       setDump(updatedDump);
-      console.log("udpateoccured");
+      console.log("udpate  occured");
     });
     return () => {
       socket.off("newRequest");

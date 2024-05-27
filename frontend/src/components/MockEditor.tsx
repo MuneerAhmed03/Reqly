@@ -47,7 +47,12 @@ const MockEditor: React.FC<MonacoDialogProps> = ({
           &#8203;
         </span>
         <div className="inline-block align-bottom bg-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+         
           <div className="bg-black px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div className="bg-black pb-3 sm:flex sm:flex-col justify-between" >
+            <label className="text-white text-lg font-sans font-bold p-1">Status Code:</label>
+            <input type="number" min="100" max="600" className="w-1/4 bg-gray-900 rounded-md text-white p-2"  />
+          </div>
             <Editor
               height="60vh"
               defaultLanguage="json"
