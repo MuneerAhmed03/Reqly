@@ -2,7 +2,7 @@
 # Reqly : A HTTP Request Inspector
 
 ## Demo
-
+<video src="https://drive.google.com/file/d/1zVyG0rxtIxzJkbFhA9zcn_qHZjhlbpIL/view?usp=drive_link"></video>
 
 ## Features
 - `Real-Time HTTP Request Inspection` : Generate a random URL for use in Axios or Fetch requests to inspect HTTP requests in real time, including headers, body, and methods.
