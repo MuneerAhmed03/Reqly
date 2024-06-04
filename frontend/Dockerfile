@@ -1,6 +1,6 @@
-FROM node:20-alpine AS builder
+FROM node:20-alpine
 
-WORKDIR /usr/src/frontend
+WORKDIR /frontend
 
 # Copy package.json and package-lock.json
 COPY package*.json ./

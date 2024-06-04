@@ -34,7 +34,10 @@ services:
     depends_on:
       - backend
     networks:
-      - reqly-network     
+      - reqly-network
+    volumes:
+      - ./frontend/src:/frontend/src
+      - ./frontend/public:/frontend/public     
 
 volumes:
   redis-data:

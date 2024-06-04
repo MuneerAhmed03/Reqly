@@ -10,6 +10,9 @@ export default defineConfig({
     host: true,
     strictPort:true,
     port: 8080,
+    watch: {
+      usePolling: true,
+    },
     proxy: {
       "/socket.io": {
         target: VITE_REQLY_URL,
