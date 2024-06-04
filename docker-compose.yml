@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    volumes:
+      - redis-data:/data
+    networks:
+      - reqly-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - ORIGIN_URL=http://localhost:8080
+    depends_on:
+      - redis
+    networks:
+      - reqly-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" 
+    tty: true
+    environment:
+      - VITE_REQLY_URL=http://localhost:3000
+    depends_on:
+      - backend
+    networks:
+      - reqly-network     
+
+volumes:
+  redis-data:
+
+networks:
+  reqly-network:
+    driver: bridge

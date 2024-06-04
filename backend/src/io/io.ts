@@ -1,11 +1,14 @@
 import { Server } from "socket.io";
+require("dotenv").config();
+
+const URL = process.env.ORIGIN_URL;
 
 let io: Server;
 
 export function initializeSocketIO(httpServer: any) {
   io = new Server(httpServer, {
     cors: {
-      origin: "https://reqly.vercel.app",
+      origin: URL,
     },
   });
 }
