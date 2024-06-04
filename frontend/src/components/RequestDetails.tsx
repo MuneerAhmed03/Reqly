@@ -4,7 +4,6 @@ import { PostParameters } from "./PostParameter";
 import { QueryParameter } from "./QueryParameter";
 import EmptySelection from "./EmptySelection";
 import { RequestData } from "../types/interfaces";
-
 interface RequestDetailsProps {
   selectedRequest: RequestData | null;
 }
