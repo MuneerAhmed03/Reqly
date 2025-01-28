@@ -11,6 +11,17 @@ export function initializeSocketIO(httpServer: any) {
       origin: URL,
     },
   });
+
+  io.on("connection", (socket) => {
+    socket.on("joinRoom", (dumpName: string) => {
+      socket.rooms.forEach((room) => {
+        if (room !== socket.id) {
+          socket.leave(room);
+        }
+      });
+      socket.join(dumpName);
+    });
+  });
 }
 
 export function getIO() {
@@ -18,4 +29,11 @@ export function getIO() {
     throw new Error("Socket.IO not initialized!");
   }
   return io;
+}
+
+export function emitToRoom(room: string, event: string, data: any) {
+  if (!io) {
+    throw new Error("Socket.IO not initialized!");
+  }
+  io.to(room).emit(event, data);
 }

@@ -24,7 +24,7 @@ const Inspect = () => {
       const updatedRequests = filterHeaders(dump.requests);
       const updatedDump = { ...dump, requests: updatedRequests };
       setDump(updatedDump);
-      console.log("udpateoccured");
+      console.log("update occurred");
     });
     return () => {
       socket.off("newRequest");
@@ -37,6 +37,7 @@ const Inspect = () => {
         if (res.status === 200) {
           setDump(res.data as Dump);
           sessionStorage.setItem("dumpName", res.data.name);
+          socket.emit("joinRoom", res.data.name);
         }
       });
     } else {
@@ -44,6 +45,7 @@ const Inspect = () => {
       axios.get(`${REQLY_URL}/dump/retrieve/${url}`).then((res) => {
         if (res.status === 200) {
           setDump(res.data as Dump);
+          socket.emit("joinRoom", res.data.name);
         } else {
           sessionStorage.removeItem("dumpName");
         }

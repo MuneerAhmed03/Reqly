@@ -2,7 +2,7 @@ import express from "express";
 import { v4 as uuidv4 } from "uuid";
 import RedisCollector from "../model/RedisCollector";
 import { Dump, RequestData } from "../model/Dump";
-import { getIO } from "../io/io";
+import { getIO, emitToRoom } from "../io/io";
 
 const router = express.Router();
 
@@ -36,7 +36,7 @@ router.all("/inspect/:randomUrl", async (req, res) => {
       .createRequest(dump, requestData)
       .then((updatedDump) => {
         res.send(dump.mockResponse);
-        getIO().emit("newRequest", { dump: updatedDump });
+        emitToRoom(dump.name, "newRequest", { dump: updatedDump });
       });
   } else {
     res.send("Invalid URL");
@@ -48,12 +48,10 @@ getIO().on("connection", (socket) => {
     try {
       if (dump != null) {
         const updatedDump = await redisCollector.createMockResponse(dump);
-        getIO().emit("newRequest", { dump: updatedDump });
-      } else {
-        console.error(`Dump not found: ${dump.name}`);
+        emitToRoom(dump.name, "newRequest", { dump: updatedDump });
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error handling response:", error);
     }
   });
 });
